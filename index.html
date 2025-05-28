@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 50px auto;
+}
+
+.light {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin: -25px 0 0 -25px;
+  border-radius: 50%;
+  animation: colorChange 7s infinite steps(1) paused;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  filter: brightness(1.2);
+}
+
+@keyframes colorChange {
+  0%    { background-color: hsl(0,    100%, 50%); }
+  14.29%  { background-color: hsl(51.4, 100%, 50%); }
+  28.57%  { background-color: hsl(102.8,100%, 50%); }
+  42.86%  { background-color: hsl(154.3,100%, 50%); }
+  57.14%  { background-color: hsl(205.7,100%, 50%); }
+  71.43%  { background-color: hsl(257.1,100%, 50%); }
+  85.71%  { background-color: hsl(308.5,100%, 50%); }
+}
+
+.light:nth-child(1) { animation-delay: -0s;    transform: rotate(0deg)    translate(150px) rotate(0deg); }
+.light:nth-child(2) { animation-delay: -1s;    transform: rotate(51.4deg) translate(150px) rotate(-51.4deg); }
+.light:nth-child(3) { animation-delay: -2s;    transform: rotate(102.8deg)translate(150px) rotate(-102.8deg); }
+.light:nth-child(4) { animation-delay: -3s;    transform: rotate(154.3deg)translate(150px) rotate(-154.3deg); }
+.light:nth-child(5) { animation-delay: -4s;    transform: rotate(205.7deg)translate(150px) rotate(-205.7deg); }
+.light:nth-child(6) { animation-delay: -5s;    transform: rotate(257.1deg)translate(150px) rotate(-257.1deg); }
+.light:nth-child(7) { animation-delay: -6s;    transform: rotate(308.5deg)translate(150px) rotate(-308.5deg); }
+
+.controls {
+  margin-top: 30px;
+}
+
+button {
+  padding: 12px 24px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 25px;
+  background: #4CAF50;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 16px;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#stop {
+  background: #f44336;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+  </div>
+  
+  <div class="controls">
+    <button id="start">启动</button>
+    <button id="stop">停止</button>
+  </div>
+
+<script>
+document.getElementById('start').addEventListener('click', () => {
+  document.querySelectorAll('.light').forEach(light => {
+    light.style.animationPlayState = 'running';
+  });
+});
+
+document.getElementById('stop').addEventListener('click', () => {
+  document.querySelectorAll('.light').forEach(light => {
+    light.style.animationPlayState = 'paused';
+  });
+});
+</script>
+
+</body>
+</html>
